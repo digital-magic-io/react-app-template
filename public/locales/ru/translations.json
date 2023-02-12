@@ -1,0 +1,67 @@
+{
+  "app": {
+    "title": "Template Application"
+  },
+  "controls": {
+    "input": {
+      "default_placeholder": "Введите значение..."
+    },
+    "loading-indicator": {
+      "loading": "Загрузка..."
+    },
+    "table": {
+      "messages": {
+        "no_data_available": "Данные отсутствуют"
+      }
+    }
+  },
+  "enums": {
+    "language": {
+      "en": "eng",
+      "et": "est",
+      "ru": "rus"
+    }
+  },
+  "global": {
+    "buttons": {
+      "back": "Назад",
+      "close": "Закрыть",
+      "confirm": "Подтвердить",
+      "delete": "Удалить",
+      "download": "Загрузить",
+      "no": "Нет",
+      "refresh": "Обновить",
+      "submit": "Отправить",
+      "yes": "Да"
+    },
+    "consents": {
+      "delete": {
+        "message": "Вы уверены, что хотите удалить эту запись?",
+        "title": "Подтверждение удаления"
+      }
+    }
+  },
+  "layout": {
+    "footer": {
+      "text": "Digital Magic MUI5 Material Template (c) 2023 Все права защищены"
+    },
+    "header": {
+      "menu": {
+        "items": {
+          "about": "О нас",
+          "home": "Домашняя"
+        }
+      }
+    }
+  },
+  "pages": {
+    "about": {
+      "text": "Текст о нас",
+      "title": "О нас"
+    },
+    "main": {
+      "text": "Текс для домашней страницы",
+      "title": "Домашняя"
+    }
+  }
+}

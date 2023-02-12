@@ -1,0 +1,67 @@
+{
+  "app": {
+    "title": "Template Application"
+  },
+  "controls": {
+    "input": {
+      "default_placeholder": "Sisestage väärtus siia..."
+    },
+    "loading-indicator": {
+      "loading": "Laadimine..."
+    },
+    "table": {
+      "messages": {
+        "no_data_available": "Andmed puuduvad"
+      }
+    }
+  },
+  "enums": {
+    "language": {
+      "en": "eng",
+      "et": "est",
+      "ru": "rus"
+    }
+  },
+  "global": {
+    "buttons": {
+      "back": "Tagasi",
+      "close": "Sulge",
+      "confirm": "Kinnitada",
+      "delete": "Kustutada",
+      "download": "Lae alla",
+      "no": "Ei",
+      "refresh": "Värskenda",
+      "submit": "Esita",
+      "yes": "Jah"
+    },
+    "consents": {
+      "delete": {
+        "message": "Kas olete kindel, et soovite selle üksuse kustutada?",
+        "title": "Kustutamise kinnitus"
+      }
+    }
+  },
+  "layout": {
+    "footer": {
+      "text": "Digital Magic MUI5 Material Template (c) 2023 Kõik õigused kaitstud"
+    },
+    "header": {
+      "menu": {
+        "items": {
+          "about": "Meiest",
+          "home": "Kodu"
+        }
+      }
+    }
+  },
+  "pages": {
+    "about": {
+      "text": "Meiest lehekulg text",
+      "title": "Meiest"
+    },
+    "main": {
+      "text": "Kodu text",
+      "title": "Kodu"
+    }
+  }
+}

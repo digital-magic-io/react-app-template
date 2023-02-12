@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@mui/styled-engine": ["node_modules/@mui/styled-engine-sc"],
+      "@api/*": ["src/api/*"],
+      "@styles/*": ["src/styles/*"],
+      "@controls/*": ["src/components/controls"],
+      "@src/*": ["src/*"]
+    }
+  }
+}

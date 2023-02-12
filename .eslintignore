@@ -1,0 +1,9 @@
+// Dynamic configuration that is generated externally on deployment
+public/config.js
+public/build.js
+// React App Rewired configuration
+config-overrides.js
+// Target build folder must not be checked
+build
+// Deployment configuration & build scripts must not be checked
+scripts

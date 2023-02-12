@@ -1,0 +1,67 @@
+{
+  "app": {
+    "title": "Template Application"
+  },
+  "controls": {
+    "input": {
+      "default_placeholder": "Enter a value here..."
+    },
+    "loading-indicator": {
+      "loading": "Loading..."
+    },
+    "table": {
+      "messages": {
+        "no_data_available": "No data available"
+      }
+    }
+  },
+  "enums": {
+    "language": {
+      "en": "eng",
+      "et": "est",
+      "ru": "rus"
+    }
+  },
+  "global": {
+    "buttons": {
+      "back": "Back",
+      "close": "Close",
+      "confirm": "Confirm",
+      "delete": "Delete",
+      "download": "Download",
+      "no": "No",
+      "refresh": "Refresh",
+      "submit": "Submit",
+      "yes": "Yes"
+    },
+    "consents": {
+      "delete": {
+        "message": "Are you sure you wish to delete this item?",
+        "title": "Deletion confirmation"
+      }
+    }
+  },
+  "layout": {
+    "footer": {
+      "text": "Digital Magic MUI5 Material Template (c) 2023 All rights reserved"
+    },
+    "header": {
+      "menu": {
+        "items": {
+          "about": "About",
+          "home": "Home"
+        }
+      }
+    }
+  },
+  "pages": {
+    "about": {
+      "text": "About page text",
+      "title": "About"
+    },
+    "main": {
+      "text": "Home page text",
+      "title": "Home"
+    }
+  }
+}
