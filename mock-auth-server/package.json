@@ -1,0 +1,14 @@
+{
+  "name": "mock-auth-server",
+  "version": "1.0.0",
+  "description": "Mock Server that handles Authentication for Front-End testing purposes",
+  "scripts": {
+    "start": "ts-node ./src/index.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^18.14.2",
+    "ts-node": "^10.9.1",
+    "tslib": "^2.5.0",
+    "typescript": "^4.9.5"
+  }
+}
