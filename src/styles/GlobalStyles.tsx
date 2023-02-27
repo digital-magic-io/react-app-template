@@ -1,5 +1,4 @@
 import { createGlobalStyle, css } from 'styled-components'
-import * as mui from '@src/constants/mui'
 
 export const GlobalStyles = createGlobalStyle`
   ${({ theme }) => css`
@@ -17,15 +16,5 @@ export const GlobalStyles = createGlobalStyle`
       font-size: ${theme.fonts.subtitle.fontSize};
       font-weight: ${theme.fonts.subtitle.fontWeight};
     }
-    /*
-    .${mui.classes.toolbar.root} {
-      color: ${theme.colors.text};
-      background-color: ${theme.colors.background};
-    }
-    
-    .${mui.classes.button.root} {
-      color: ${theme.colors.primary};
-    }    
-    */
   `}
 `

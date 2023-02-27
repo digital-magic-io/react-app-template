@@ -3,10 +3,16 @@
     "baseUrl": ".",
     "paths": {
       "@mui/styled-engine": ["node_modules/@mui/styled-engine-sc"],
+      "@constants/*": ["src/constants/*"],
+      "@utils/*": ["src/utils/*"],
+      "@model/*": ["src/model/*"],
       "@api/*": ["src/api/*"],
+      "@context/*": ["src/context/*"],
+      "@hooks/*": ["src/hooks/*"],
       "@styles/*": ["src/styles/*"],
-      "@controls/*": ["src/components/controls"],
-      "@src/*": ["src/*"]
+      "@controls/*": ["src/components/controls/*"],
+      "@layout/*": ["src/components/layout/*"],
+      "@pages/*": ["src/components/pages/*"]
     }
   }
 }

@@ -2,14 +2,15 @@ import * as React from 'react'
 import { I18nextProvider, useTranslation } from 'react-i18next'
 import { QueryClientProvider } from 'react-query'
 import { BrowserRouter } from 'react-router-dom'
+import { CssBaseline } from '@mui/material'
 import { StyledEngineProvider, ThemeProvider } from '@mui/material/styles'
 import { GlobalStyles } from '@styles/GlobalStyles'
+import { queryClient } from '@api/queryClient'
 import { i18n } from './i18n'
-import { queryClient } from '@api/core/queryClient'
-import { baseUrl } from '@src/constants/configuration'
+import { baseUrl } from '@constants/configuration'
+import { AppContextProvider, useAppContext } from '@context/AppContext'
 import { AppRoutes } from './AppRoutes'
-import { CssBaseline } from '@mui/material'
-import { AppContextProvider, useAppContext } from '@src/context/AppContext'
+import { SnackbarProvider } from '@context/SnackbarContext'
 
 // TODO: Move it to a separate component and style it
 const LoadingIndicator: React.FC = () => {
@@ -24,9 +25,11 @@ const AppWithContexts: React.FC = () => {
     <ThemeProvider theme={currentTheme}>
       <CssBaseline />
       <GlobalStyles />
-      <React.Suspense fallback={<LoadingIndicator />}>
-        <AppRoutes />
-      </React.Suspense>
+      <SnackbarProvider>
+        <React.Suspense fallback={<LoadingIndicator />}>
+          <AppRoutes />
+        </React.Suspense>
+      </SnackbarProvider>
     </ThemeProvider>
   )
 }

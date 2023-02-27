@@ -1,6 +1,6 @@
 import { getWindowProperty } from '@digital-magic/react-common/lib/utils/window'
 import { ThemeType } from '@styles/theme/types'
-import { UserLanguage } from '@api/endpoints/language/types'
+import { UserLanguage } from '@model/common'
 //import { LanguageConfiguration } from '@digital-magic/react-common/lib/i18n'
 
 // Versions and paths

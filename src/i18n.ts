@@ -4,7 +4,14 @@ import LanguageDetector from 'i18next-browser-languagedetector'
 import ChainedBackend from 'i18next-chained-backend'
 import HttpApiBackend from 'i18next-http-backend'
 import LocalStorageBackend from 'i18next-localstorage-backend'
-import { LanguageConfiguration } from '@src/constants/configuration'
+import { LanguageConfiguration } from '@constants/configuration'
+
+declare module 'i18next' {
+  // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
+  interface CustomTypeOptions {
+    returnNull: false
+  }
+}
 
 void i18n
   // Try to translation from localStore (https://github.com/i18next/i18next-localstorage-backend) using ChainedBackend (https://github.com/i18next/i18next-chained-backend)

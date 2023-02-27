@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { useTranslation } from 'react-i18next'
-import { Page } from '@src/components/layout/Page'
+import { Page } from '@layout/Page'
 import { Typography } from '@mui/material'
 
 const About: React.FC = () => {

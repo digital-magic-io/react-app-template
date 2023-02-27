@@ -1,7 +1,6 @@
+import { LanguageConfiguration } from '@constants/configuration'
 import { arrayIncludes } from '@digital-magic/ts-common-utils'
-import { LanguageConfiguration } from '@src/constants/configuration'
-import { UserLanguage } from '@api/endpoints/language/types'
-import { useTranslation } from 'react-i18next'
+import { UserLanguage } from './common'
 
 export type AvailableLanguage = (typeof LanguageConfiguration.availableLanguages)[number]
 
@@ -27,10 +26,4 @@ export const language = (lang: string): UserLanguage => {
     }
     return UserLanguage.enum.en
   }
-}
-
-export const useGetLanguage = (): UserLanguage => {
-  const { i18n } = useTranslation()
-
-  return language(i18n.language)
 }

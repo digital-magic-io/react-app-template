@@ -32,7 +32,8 @@
       "no": "No",
       "refresh": "Refresh",
       "submit": "Submit",
-      "yes": "Yes"
+      "yes": "Yes",
+      "logout": "Logout"
     },
     "consents": {
       "delete": {
@@ -55,6 +56,18 @@
     }
   },
   "pages": {
+    "login": {
+      "title": "Sign in",
+      "form": {
+        "fields": {
+          "username": "Username",
+          "password": "Password"
+        },
+        "buttons": {
+          "submit": "Login"
+        }
+      }
+    },
     "about": {
       "text": "About page text",
       "title": "About"

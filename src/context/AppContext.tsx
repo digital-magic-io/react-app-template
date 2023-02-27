@@ -1,7 +1,7 @@
 import * as React from 'react'
 import * as z from 'zod'
 import { useValidatedLocalStorage } from '@digital-magic/react-common/lib/storage'
-import { defaultTheme, themeStorageKey } from '@src/constants/configuration'
+import { defaultTheme, themeStorageKey } from '@constants/configuration'
 import { CustomTheme, type ThemeType } from '@styles/theme/types'
 import { darkTheme } from '@styles/theme/darkTheme'
 import { lightTheme } from '@styles/theme/lightTheme'

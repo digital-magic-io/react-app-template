@@ -1,16 +1,19 @@
 import * as React from 'react'
 import { useTranslation } from 'react-i18next'
+import { NavLink, NavLinkProps, useNavigate } from 'react-router-dom'
+import { TFunction } from 'i18next'
 import { Box, Container, IconButton, Menu, MenuItem, Toolbar, Typography } from '@mui/material'
 import { DarkMode, LightMode, Menu as MenuIcon } from '@mui/icons-material'
+import { hasValue, NullableType } from '@digital-magic/ts-common-utils'
+import { controlClassName, HtmlMouseButtonEventHandler, HtmlMouseEventHandler } from '@digital-magic/react-common'
+import { routes } from '@constants/routes'
+import { useAppContext } from '@context/AppContext'
 import { HeaderStyled } from './style'
-import { Button, Link } from '@src/components/controls'
-import { routes } from '@src/constants/routes'
-import { NullableType } from '@digital-magic/ts-common-utils'
-import { HtmlMouseButtonEventHandler, HtmlMouseEventHandler, MenuClass } from '@digital-magic/react-common'
-import { useAppContext } from '@src/context/AppContext'
-import { TFunction } from 'i18next'
-import { NavLink, NavLinkProps, useNavigate } from 'react-router-dom'
-import { UserLanguage } from '@api/endpoints/language/types'
+import { UserLanguage } from '@model/common'
+import { useAuthStore } from '@hooks/useAuthStore'
+import { Link } from '@controls/Link'
+import { Button } from '@controls/Button'
+import { useAuthentication } from '@hooks/useAuthentication'
 
 type MenuItemProps = {
   title: ReturnType<TFunction>
@@ -34,6 +37,8 @@ export const Header: React.FC = () => {
   const { i18n, t } = useTranslation()
   const [anchorMenu, setAnchorMenu] = React.useState<NullableType<HTMLElement>>(null)
   const { currentTheme, switchTheme } = useAppContext()
+  const displayName = useAuthStore((state) => state.auth?.displayName)
+  const { logout } = useAuthentication()
   const navigate = useNavigate()
 
   const handleCloseNavMenu: React.DispatchWithoutAction = () => {
@@ -58,6 +63,11 @@ export const Header: React.FC = () => {
   const handleLanguageClick: (lang: UserLanguage) => HtmlMouseEventHandler = (lang) => (e) => {
     e.preventDefault()
     void i18n.changeLanguage(lang)
+  }
+
+  const handleLogoutClick: HtmlMouseButtonEventHandler = (e) => {
+    e.preventDefault()
+    logout()
   }
 
   const menuItems: ReadonlyArray<MenuItemProps> = React.useMemo(
@@ -124,7 +134,7 @@ export const Header: React.FC = () => {
           </Box>
           <Box columnGap={2} flex={1} sx={{ display: { xs: 'none', md: 'flex' } }}>
             {menuItems.map((item, index) => (
-              <NavLink key={index} to={item.to} className={({ isActive }) => (isActive ? MenuClass.Active : '')}>
+              <NavLink key={index} to={item.to} className={({ isActive }) => (isActive ? controlClassName.Active : '')}>
                 {item.title}
               </NavLink>
             ))}
@@ -135,17 +145,25 @@ export const Header: React.FC = () => {
                 key={index}
                 onClick={handleLanguageClick(lang)}
                 href="#"
-                className={lang === i18n.language ? MenuClass.Active : ''}
+                className={lang === i18n.language ? controlClassName.Active : ''}
               >
                 {translateLang(lang)}
               </Link>
             ))}
           </Box>
-          <Box sx={{ flexGrow: 0 }}>
+          <Box sx={{ flexGrow: 0 }} columnGap={2}>
             <Button onClick={handleSwitchThemeClick} color="inherit">
               {currentTheme.type === 'light' ? <DarkMode /> : <LightMode />}
             </Button>
           </Box>
+          {hasValue(displayName) && (
+            <Box sx={{ flexGrow: 0 }} display="flex" columnGap={2}>
+              <Typography>{displayName}</Typography>
+              <Button color="inherit" onClick={handleLogoutClick}>
+                {t('global.buttons.logout')}
+              </Button>
+            </Box>
+          )}
         </Toolbar>
       </Container>
     </HeaderStyled>

@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Grid, Typography } from '@mui/material'
-import { Page } from '@src/components/layout/Page'
+import { Page } from '@layout/Page'
 
 const Main: React.FC = () => {
   const { t } = useTranslation()
