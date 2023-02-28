@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Navigate, useRoutes } from 'react-router-dom'
-import { useAuthentication } from '@hooks/useAuthentication'
+import { useAuthStore } from '@stores/useAuthStore'
 import { RouteObject } from 'react-router/dist/lib/context'
 import { routes } from '@constants/routes'
 
@@ -9,7 +9,7 @@ const MainPage = React.lazy(() => import('./components/pages/Main'))
 const AboutPage = React.lazy(() => import('./components/pages/About'))
 
 export const AppRoutes: React.FC = () => {
-  const { isAuthenticated } = useAuthentication()
+  const { isAuthenticated } = useAuthStore()
 
   const publicRoutes: Array<RouteObject> = React.useMemo(
     () => [

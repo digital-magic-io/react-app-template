@@ -1,6 +1,6 @@
 import { getWindowProperty } from '@digital-magic/react-common/lib/utils/window'
 import { ThemeType } from '@styles/theme/types'
-import { UserLanguage } from '@model/common'
+import { UserLanguage } from '@model/language'
 //import { LanguageConfiguration } from '@digital-magic/react-common/lib/i18n'
 
 // Versions and paths
@@ -20,7 +20,7 @@ export const priceCurrency = 'EUR'
 
 // Other
 const storagePrefix = 'react-app-dm-template'
-export const themeStorageKey = `${storagePrefix}selected-theme`
+export const appStorageKey = `${storagePrefix}_app-storage`
 
 export const defaultTheme: ThemeType = 'light'
 

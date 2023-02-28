@@ -2,44 +2,33 @@ import * as React from 'react'
 import { useTranslation } from 'react-i18next'
 import { NavLink, NavLinkProps, useNavigate } from 'react-router-dom'
 import { TFunction } from 'i18next'
-import { Box, Container, IconButton, Menu, MenuItem, Toolbar, Typography } from '@mui/material'
-import { DarkMode, LightMode, Menu as MenuIcon } from '@mui/icons-material'
 import { hasValue, NullableType } from '@digital-magic/ts-common-utils'
 import { controlClassName, HtmlMouseButtonEventHandler, HtmlMouseEventHandler } from '@digital-magic/react-common'
 import { routes } from '@constants/routes'
-import { useAppContext } from '@context/AppContext'
-import { HeaderStyled } from './style'
-import { UserLanguage } from '@model/common'
-import { useAuthStore } from '@hooks/useAuthStore'
+import { UserLanguage } from '@model/language'
+import { useAuthStore } from '@stores/useAuthStore'
+import { useAuthentication } from '@hooks/useAuthentication'
+import { useTheme } from '@hooks/useTheme'
+import { useEnumTranslation } from '@hooks/Translation/useEnumTranslation'
+import { Box, Container, IconButton, Menu, MenuItem, Toolbar, Typography } from '@mui/material'
+import { DarkMode, LightMode, Menu as MenuIcon } from '@mui/icons-material'
 import { Link } from '@controls/Link'
 import { Button } from '@controls/Button'
-import { useAuthentication } from '@hooks/useAuthentication'
+import { HeaderStyled } from './style'
 
 type MenuItemProps = {
   title: ReturnType<TFunction>
   to: NavLinkProps['to']
 }
 
-export const languageTranslation =
-  (t: TFunction) =>
-  (lang: UserLanguage): string => {
-    switch (lang) {
-      case 'et':
-        return t('enums.language.et')
-      case 'ru':
-        return t('enums.language.ru')
-      case 'en':
-        return t('enums.language.en')
-    }
-  }
-
 export const Header: React.FC = () => {
   const { i18n, t } = useTranslation()
   const [anchorMenu, setAnchorMenu] = React.useState<NullableType<HTMLElement>>(null)
-  const { currentTheme, switchTheme } = useAppContext()
+  const { currentTheme, switchTheme } = useTheme()
   const displayName = useAuthStore((state) => state.auth?.displayName)
   const { logout } = useAuthentication()
   const navigate = useNavigate()
+  const { languageTranslation } = useEnumTranslation()
 
   const handleCloseNavMenu: React.DispatchWithoutAction = () => {
     setAnchorMenu(null)
@@ -85,9 +74,6 @@ export const Header: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [i18n.language]
   )
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const translateLang = React.useMemo(() => languageTranslation(t), [i18n.language])
 
   return (
     <HeaderStyled position="sticky">
@@ -147,7 +133,7 @@ export const Header: React.FC = () => {
                 href="#"
                 className={lang === i18n.language ? controlClassName.Active : ''}
               >
-                {translateLang(lang)}
+                {languageTranslation(lang)}
               </Link>
             ))}
           </Box>

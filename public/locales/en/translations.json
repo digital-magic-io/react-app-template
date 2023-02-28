@@ -65,6 +65,11 @@
   "pages": {
     "login": {
       "title": "Sign in",
+      "errors": {
+        "SignedOut": "Signed out by user",
+        "InvalidLogin": "Invalid user credentials",
+        "TimedOut": "Session timed out"
+      },
       "form": {
         "fields": {
           "username": "Username",

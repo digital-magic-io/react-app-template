@@ -1,6 +1,6 @@
 import { LanguageConfiguration } from '@constants/configuration'
 import { arrayIncludes } from '@digital-magic/ts-common-utils'
-import { UserLanguage } from './common'
+import { UserLanguage } from './model'
 
 export type AvailableLanguage = (typeof LanguageConfiguration.availableLanguages)[number]
 

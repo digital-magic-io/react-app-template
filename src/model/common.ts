@@ -36,6 +36,3 @@ export type FreeFormText = z.infer<typeof FreeFormText>
 
 export const Password = z.string().min(6).max(16)
 export type Password = z.infer<typeof Password>
-
-export const UserLanguage = z.enum(['en', 'ru', 'et'])
-export type UserLanguage = z.infer<typeof UserLanguage>

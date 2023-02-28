@@ -1,67 +1,61 @@
 import * as React from 'react'
-import { Handler, hasValue } from '@digital-magic/ts-common-utils'
+import { Handler, OptionalType } from '@digital-magic/ts-common-utils'
 import { HttpError } from '@digital-magic/react-common/lib/api'
+import { Authentication, LogoutReason } from '@model/auth'
 import { RequestErrorHandler } from '@api/types'
 import { AuthenticationRequest } from '@api/endpoints/auth/types'
 import { useAuthenticate, useGetAuthentication, useInvalidateAuthentication } from '@api/endpoints/auth/requests'
 import { useDefaultPublicErrorHandler } from '@hooks/useDefaultPublicErrorHandler'
-import { useAuthStore } from './useAuthStore'
+import { useAuthStore } from '@stores/useAuthStore'
 
-type ResponseParams = {
+type HookResult = {
   login: Handler<AuthenticationRequest>
   logout: Handler<void>
-  isAuthenticated: boolean
+  logoutReason: OptionalType<LogoutReason>
 }
 
-export const useAuthentication = (): ResponseParams => {
-  const { auth, setAuth, invalidate } = useAuthStore()
+// TODO: Reducer can be used for better state management?
+export const useAuthentication = (): HookResult => {
+  const { setAuth, invalidate, logoutReason } = useAuthStore()
   const defaultErrorHandler = useDefaultPublicErrorHandler()
-  const [isAuthenticated, setAuthenticated] = React.useState(false)
+  const [needUserInfo, setNeedUserInfo] = React.useState(false)
 
-  const onAuthError: (displayError: boolean) => RequestErrorHandler = (displayError) => (e) => {
+  const onAuthError: (reason: OptionalType<LogoutReason>) => RequestErrorHandler = (reason) => (e) => {
     if (e.name === HttpError && (e.httpStatus === 401 || e.httpStatus === 403)) {
-      invalidateAuthState()
-      if (displayError) {
-        defaultErrorHandler(e)
-      }
+      setNeedUserInfo(false)
+      invalidate(reason)
     } else {
       return defaultErrorHandler(e)
     }
   }
 
-  const authentication = useGetAuthentication({ onError: onAuthError(false), onSuccess: setAuth })
-  const authenticate = useAuthenticate({
-    onError: onAuthError(true)
+  const onAuthenticationSuccess = (authInfo: Authentication): void => {
+    setAuth(authInfo)
+    setNeedUserInfo(true)
+  }
+
+  const onInvalidateAuthSuccess = (): void => {
+    setNeedUserInfo(false)
+    invalidate('SignedOut')
+  }
+
+  // TODO: Not every 401/403 means TimedOut - need more precise handling (server must send this reason)
+  useGetAuthentication({
+    onError: onAuthError('TimedOut'),
+    onSuccess: onAuthenticationSuccess,
+    enabled: needUserInfo
   })
-  const invalidateAuth = useInvalidateAuthentication({ onError: onAuthError(false) })
+  const authenticate = useAuthenticate({ onError: onAuthError('InvalidLogin'), onSuccess: () => setNeedUserInfo(true) })
+  // eslint-disable-next-line functional/prefer-tacit
+  const invalidateAuth = useInvalidateAuthentication({
+    onError: onAuthError(undefined),
+    onSuccess: onInvalidateAuthSuccess
+  })
 
-  const invalidateAuthState = React.useCallback(() => {
-    if (isAuthenticated) {
-      invalidate()
-    }
-  }, [invalidate, isAuthenticated])
-
-  const login: ResponseParams['login'] = React.useCallback(
-    (request) => {
-      return authenticate.mutate(request)
-    },
-    [authenticate]
-  )
-
-  const logout: ResponseParams['logout'] = React.useCallback(() => {
-    invalidateAuthState()
-    return invalidateAuth.mutate()
-  }, [invalidateAuthState, invalidateAuth])
-
-  React.useEffect(() => {
-    if (hasValue(authentication.data) && hasValue(auth)) {
-      setAuthenticated(true)
-    } else {
-      setAuthenticated(false)
-    }
-  }, [authentication.data, auth])
+  const login: HookResult['login'] = React.useCallback((request) => authenticate.mutate(request), [authenticate])
+  const logout: HookResult['logout'] = React.useCallback(() => invalidateAuth.mutate(), [invalidateAuth])
 
   //console.log('useAuthentication render')
 
-  return { isAuthenticated, login, logout }
+  return { login, logout, logoutReason }
 }

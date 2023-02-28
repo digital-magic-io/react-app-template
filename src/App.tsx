@@ -8,9 +8,9 @@ import { GlobalStyles } from '@styles/GlobalStyles'
 import { queryClient } from '@api/queryClient'
 import { i18n } from './i18n'
 import { baseUrl } from '@constants/configuration'
-import { AppContextProvider, useAppContext } from '@context/AppContext'
 import { AppRoutes } from './AppRoutes'
 import { SnackbarProvider } from '@context/SnackbarContext'
+import { useTheme } from '@hooks/useTheme'
 
 // TODO: Move it to a separate component and style it
 const LoadingIndicator: React.FC = () => {
@@ -19,7 +19,7 @@ const LoadingIndicator: React.FC = () => {
 }
 
 const AppWithContexts: React.FC = () => {
-  const { currentTheme } = useAppContext()
+  const { currentTheme } = useTheme()
 
   return (
     <ThemeProvider theme={currentTheme}>
@@ -39,11 +39,9 @@ export const App: React.FC = () => {
     <I18nextProvider i18n={i18n}>
       <QueryClientProvider client={queryClient}>
         <BrowserRouter basename={baseUrl}>
-          <AppContextProvider>
-            <StyledEngineProvider injectFirst>
-              <AppWithContexts />
-            </StyledEngineProvider>
-          </AppContextProvider>
+          <StyledEngineProvider injectFirst>
+            <AppWithContexts />
+          </StyledEngineProvider>
         </BrowserRouter>
       </QueryClientProvider>
     </I18nextProvider>

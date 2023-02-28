@@ -1,6 +1,8 @@
 import * as z from 'zod'
 import { DisplayName, EmailAddress } from '@model/common'
 
+export type LogoutReason = 'SignedOut' | 'InvalidLogin' | 'TimedOut'
+
 export const UserRole = z.enum(['Admin', 'User'])
 export type UserRole = z.infer<typeof UserRole>
 
