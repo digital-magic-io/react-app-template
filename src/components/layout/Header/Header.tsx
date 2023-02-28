@@ -68,6 +68,10 @@ export const Header: React.FC = () => {
       {
         title: t('layout.header.menu.items.about'),
         to: routes.About
+      },
+      {
+        title: t('layout.header.menu.items.users'),
+        to: routes.Users
       }
     ],
 

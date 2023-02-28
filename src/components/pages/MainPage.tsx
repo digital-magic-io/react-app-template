@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Grid, Typography } from '@mui/material'
 import { Page } from '@layout/Page'
 
-const Main: React.FC = () => {
+const MainPage: React.FC = () => {
   const { t } = useTranslation()
 
   return (
@@ -26,4 +26,4 @@ const Main: React.FC = () => {
   )
 }
 
-export default Main
+export default MainPage

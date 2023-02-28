@@ -20,6 +20,15 @@
       "en": "eng",
       "et": "est",
       "ru": "rus"
+    },
+    "logoutReasons": {
+      "InvalidLogin": "Invalid user credentials",
+      "SignedOut": "Signed out by user",
+      "TimedOut": "Session timed out"
+    },
+    "userRoles": {
+      "Admin": "Admin",
+      "User": "User"
     }
   },
   "global": {
@@ -29,11 +38,13 @@
       "confirm": "Confirm",
       "delete": "Delete",
       "download": "Download",
+      "edit": "Edit",
+      "logout": "Logout",
+      "new": "New",
       "no": "No",
       "refresh": "Refresh",
       "submit": "Submit",
-      "yes": "Yes",
-      "logout": "Logout"
+      "yes": "Yes"
     },
     "consents": {
       "delete": {
@@ -57,36 +68,57 @@
       "menu": {
         "items": {
           "about": "About",
-          "home": "Home"
+          "home": "Home",
+          "users": "Users"
         }
       }
     }
   },
   "pages": {
-    "login": {
-      "title": "Sign in",
-      "errors": {
-        "SignedOut": "Signed out by user",
-        "InvalidLogin": "Invalid user credentials",
-        "TimedOut": "Session timed out"
-      },
-      "form": {
-        "fields": {
-          "username": "Username",
-          "password": "Password"
-        },
-        "buttons": {
-          "submit": "Login"
-        }
-      }
-    },
     "about": {
       "text": "About page text",
       "title": "About"
     },
+    "login": {
+      "form": {
+        "buttons": {
+          "submit": "Login"
+        },
+        "fields": {
+          "password": "Password",
+          "username": "Username"
+        }
+      },
+      "title": "Sign in"
+    },
     "main": {
       "text": "Home page text",
       "title": "Home"
+    },
+    "user": {
+      "edit": {
+        "title": "Edit user"
+      },
+      "form": {
+        "fields": {
+          "displayName": "Display Name",
+          "password": "Password",
+          "role": "User Role",
+          "username": "Username"
+        }
+      },
+      "new": {
+        "title": "New user"
+      }
+    },
+    "users": {
+      "fields": {
+        "displayName": "Display Name",
+        "password": "Password",
+        "role": "User Role",
+        "username": "Username"
+      },
+      "title": "Users"
     }
   }
 }

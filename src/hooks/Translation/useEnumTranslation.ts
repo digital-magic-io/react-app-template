@@ -1,12 +1,13 @@
 import * as React from 'react'
 import { useTranslation } from 'react-i18next'
 import { UserLanguage } from '@model/language'
-import { LogoutReason } from '@model/auth'
+import { LogoutReason, UserRole } from '@model/auth'
 import { TranslationFn } from './types'
-import { languageTranslation, logoutReasonTranslation } from './utils'
+import { languageTranslation, logoutReasonTranslation, roleTranslation } from './utils'
 
 type HookResult = {
   languageTranslation: TranslationFn<UserLanguage>
+  roleTranslation: TranslationFn<UserRole>
   logoutReasonTranslation: TranslationFn<LogoutReason>
 }
 
@@ -16,6 +17,7 @@ export const useEnumTranslation = (): HookResult => {
   return React.useMemo(
     () => ({
       languageTranslation: languageTranslation(t),
+      roleTranslation: roleTranslation(t),
       logoutReasonTranslation: logoutReasonTranslation(t)
     }),
     // TODO: Can we achieve correct memoization without breading eslint rule?

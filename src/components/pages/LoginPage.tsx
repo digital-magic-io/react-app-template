@@ -9,7 +9,7 @@ import { Button } from '@controls/Button'
 import { hasValue } from '@digital-magic/ts-common-utils'
 import { useEnumTranslation } from '@hooks/Translation/useEnumTranslation'
 
-const Login: React.FC = () => {
+const LoginPage: React.FC = () => {
   const { t } = useTranslation()
   const { login, logoutReason } = useAuthentication()
   const { logoutReasonTranslation } = useEnumTranslation()
@@ -35,4 +35,4 @@ const Login: React.FC = () => {
   )
 }
 
-export default Login
+export default LoginPage

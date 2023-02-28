@@ -3,6 +3,7 @@ import { hasValue } from '@digital-magic/ts-common-utils'
 import { RequestErrorHandler, RequestErrorMapper } from '@api/types'
 import { defaultRequestErrorMapper } from '@api/utils'
 import { useSnackbarContext } from '@context/SnackbarContext'
+import { isClientErrorTranslation } from '@digital-magic/react-common/lib/errors'
 
 export const useDefaultPublicErrorHandler = (
   requestErrorMapper: RequestErrorMapper = defaultRequestErrorMapper
@@ -12,14 +13,14 @@ export const useDefaultPublicErrorHandler = (
 
   return (e) => {
     const error = requestErrorMapper(e)
-    if (error.name === 'ClientErrorPlainText') {
-      snackbar.open({ message: error.message })
-    } else {
+    if (isClientErrorTranslation(error)) {
       if (hasValue(error.messageOpts)) {
         snackbar.open({ message: t(error.messageKey, error.messageOpts) })
       } else {
         snackbar.open({ message: t(error.messageKey) })
       }
+    } else {
+      snackbar.open({ message: error.message })
     }
   }
 }

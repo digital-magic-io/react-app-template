@@ -4,9 +4,11 @@ import { useAuthStore } from '@stores/useAuthStore'
 import { RouteObject } from 'react-router/dist/lib/context'
 import { routes } from '@constants/routes'
 
-const LoginPage = React.lazy(() => import('./components/pages/Login'))
-const MainPage = React.lazy(() => import('./components/pages/Main'))
-const AboutPage = React.lazy(() => import('./components/pages/About'))
+const LoginPage = React.lazy(() => import('@pages/LoginPage'))
+const MainPage = React.lazy(() => import('@pages/MainPage'))
+const AboutPage = React.lazy(() => import('@pages/AboutPage'))
+const UsersPage = React.lazy(() => import('@pages/Users/UsersPage'))
+const UserPage = React.lazy(() => import('@pages/Users/UserPage'))
 
 export const AppRoutes: React.FC = () => {
   const { isAuthenticated } = useAuthStore()
@@ -33,6 +35,18 @@ export const AppRoutes: React.FC = () => {
       {
         path: routes.About,
         element: <AboutPage />
+      },
+      {
+        path: routes.Users,
+        element: <UsersPage />
+      },
+      {
+        path: routes.UserNew,
+        element: <UserPage />
+      },
+      {
+        path: routes.UserEdit,
+        element: <UserPage />
       },
       {
         path: '*',

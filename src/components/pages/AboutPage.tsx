@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Page } from '@layout/Page'
 import { Typography } from '@mui/material'
 
-const About: React.FC = () => {
+const AboutPage: React.FC = () => {
   const { t } = useTranslation()
 
   return (
@@ -14,4 +14,4 @@ const About: React.FC = () => {
   )
 }
 
-export default About
+export default AboutPage

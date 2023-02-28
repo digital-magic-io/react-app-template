@@ -9,7 +9,7 @@ import { AuthenticationRequest } from '@api/endpoints/auth/types'
 const authUrl = `${apiBaseUrlV1}/auth`
 
 const queryKeys = {
-  getAuthentication: 'getAuthentication'
+  getAuthentication: ['getAuthentication']
 }
 
 export const useGetAuthentication = (opts?: ApiQueryOpts<Authentication>) =>

@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Handler, OptionalType } from '@digital-magic/ts-common-utils'
-import { HttpError } from '@digital-magic/react-common/lib/api'
+import { isHttpError } from '@digital-magic/react-common/lib/api'
 import { Authentication, LogoutReason } from '@model/auth'
 import { RequestErrorHandler } from '@api/types'
 import { AuthenticationRequest } from '@api/endpoints/auth/types'
@@ -21,7 +21,7 @@ export const useAuthentication = (): HookResult => {
   const [needUserInfo, setNeedUserInfo] = React.useState(false)
 
   const onAuthError: (reason: OptionalType<LogoutReason>) => RequestErrorHandler = (reason) => (e) => {
-    if (e.name === HttpError && (e.httpStatus === 401 || e.httpStatus === 403)) {
+    if (isHttpError(e) && (e.httpStatus === 401 || e.httpStatus === 403)) {
       setNeedUserInfo(false)
       invalidate(reason)
     } else {

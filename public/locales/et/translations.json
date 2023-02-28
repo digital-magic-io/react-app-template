@@ -20,6 +20,15 @@
       "en": "eng",
       "et": "est",
       "ru": "rus"
+    },
+    "logoutReasons": {
+      "InvalidLogin": "Kehtetud kasutaja mandaadid",
+      "SignedOut": "Kasutaja on välja loginud",
+      "TimedOut": "Sessioon aegnud"
+    },
+    "userRoles": {
+      "Admin": "Amin",
+      "User": "Kasutaja"
     }
   },
   "global": {
@@ -29,6 +38,9 @@
       "confirm": "Kinnitada",
       "delete": "Kustutada",
       "download": "Lae alla",
+      "edit": "Muuda",
+      "logout": "Logi välja",
+      "new": "Uus",
       "no": "Ei",
       "refresh": "Värskenda",
       "submit": "Esita",
@@ -39,6 +51,13 @@
         "message": "Kas olete kindel, et soovite selle üksuse kustutada?",
         "title": "Kustutamise kinnitus"
       }
+    },
+    "form_errors": {
+      "invalid_email": "Kehtetu meilivorming",
+      "invalid_type": "Sobimatu tüüp",
+      "max_str_len": "Peaks olema lühem kui {{maxLength}} tähemärki",
+      "min_str_len": "Peaks olema vähemalt {{minLength}} tähemärki pikk",
+      "required": "Selle välja täitmine on kohustuslik"
     }
   },
   "layout": {
@@ -49,7 +68,8 @@
       "menu": {
         "items": {
           "about": "Meiest",
-          "home": "Kodu"
+          "home": "Kodu",
+          "users": "Kasutajad"
         }
       }
     }
@@ -59,9 +79,46 @@
       "text": "Meiest lehekulg text",
       "title": "Meiest"
     },
+    "login": {
+      "form": {
+        "buttons": {
+          "submit": "Logi sisse"
+        },
+        "fields": {
+          "password": "Parool",
+          "username": "Kasutajanimi"
+        }
+      },
+      "title": "Sisse logimine"
+    },
     "main": {
       "text": "Kodu text",
       "title": "Kodu"
+    },
+    "user": {
+      "edit": {
+        "title": "Muuda kasutajat"
+      },
+      "form": {
+        "fields": {
+          "displayName": "Kuvatav nimi",
+          "password": "Parool",
+          "role": "Kasutaja roll",
+          "username": "Kasutajanimi"
+        }
+      },
+      "new": {
+        "title": "Uus kasutaja"
+      }
+    },
+    "users": {
+      "fields": {
+        "displayName": "Kuvatav nimi",
+        "password": "Parool",
+        "role": "Kasutaja roll",
+        "username": "Kasutajanimi"
+      },
+      "title": "Kasutajad"
     }
   }
 }

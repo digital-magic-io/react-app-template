@@ -1,9 +1,6 @@
 import axios, { isAxiosError } from 'axios'
+import { clientRequestErrorPlainText, clientRequestErrorTranslation } from '@digital-magic/react-common/lib/errors'
 import {
-  ApiError,
-  HttpError,
-  clientRequestErrorTranslation,
-  clientRequestErrorPlainText,
   buildRequestError,
   RequestErrorBuilder,
   doReceiveOnly,
@@ -11,10 +8,12 @@ import {
   doSendAndReceive,
   doCallOnly,
   doSendFile,
-  doSendFileAndReceive
+  doSendFileAndReceive,
+  isApiError,
+  isHttpError
 } from '@digital-magic/react-common/lib/api'
-import { ApiErrorCustomObject, ApiErrorPayload } from './errors'
 import { RequestErrorMapper } from './types'
+import { ApiErrorCustomObject, ApiErrorPayload } from './errors'
 
 const buildCustomRequestError: RequestErrorBuilder<ApiErrorPayload> = buildRequestError(
   isAxiosError,
@@ -31,36 +30,35 @@ export const sendFile = doSendFile(axios, buildCustomRequestError)
 export const sendFileAndReceive = doSendFileAndReceive(axios, buildCustomRequestError)
 
 export const defaultRequestErrorMapper: RequestErrorMapper = (e) => {
-  switch (e.name) {
-    case ApiError:
-      switch (e.payload.code) {
-        case 'UnsupportedMediaType':
-          return clientRequestErrorTranslation('Unsupported media type', e, 'global.errors.enum.UnsupportedMediaType')
-        case 'AlreadyExistsError':
-          return clientRequestErrorTranslation('Entity already exists', e, 'global.errors.enum.AlreadyExistsError')
-        case 'ConstraintViolationError':
-          return clientRequestErrorTranslation(
-            'Action is not allowed due to constraint',
-            e,
-            'global.errors.enum.ConstraintViolationError'
-          )
-        default:
-          return clientRequestErrorTranslation('Unknown API error', e, 'global.errors.enum.UnknownApiError')
-      }
-    case HttpError:
-      switch (e.httpStatus) {
-        case 400:
-          return clientRequestErrorPlainText('API Error: Bad request', e)
-        case 401:
-          return clientRequestErrorPlainText('API Error: Unauthorized request', e)
-        case 404:
-          return clientRequestErrorPlainText('API Error: Resource not found', e)
-        case 409:
-          return clientRequestErrorPlainText('API Error: Action is not allowed due to data conflict', e)
-        default:
-          return clientRequestErrorPlainText('API Error: Unknown error', e)
-      }
-    default:
-      return clientRequestErrorPlainText('Unknown error', e)
+  if (isApiError(e)) {
+    switch (e.payload.code) {
+      case 'UnsupportedMediaType':
+        return clientRequestErrorTranslation('Unsupported media type', e, 'global.errors.enum.UnsupportedMediaType')
+      case 'AlreadyExistsError':
+        return clientRequestErrorTranslation('Entity already exists', e, 'global.errors.enum.AlreadyExistsError')
+      case 'ConstraintViolationError':
+        return clientRequestErrorTranslation(
+          'Action is not allowed due to constraint',
+          e,
+          'global.errors.enum.ConstraintViolationError'
+        )
+      default:
+        return clientRequestErrorTranslation('Unknown API error', e, 'global.errors.enum.UnknownApiError')
+    }
+  } else if (isHttpError(e)) {
+    switch (e.httpStatus) {
+      case 400:
+        return clientRequestErrorPlainText('API Error: Bad request', e)
+      case 401:
+        return clientRequestErrorPlainText('API Error: Unauthorized request', e)
+      case 404:
+        return clientRequestErrorPlainText('API Error: Resource not found', e)
+      case 409:
+        return clientRequestErrorPlainText('API Error: Action is not allowed due to data conflict', e)
+      default:
+        return clientRequestErrorPlainText('API Error: Unknown error', e)
+    }
+  } else {
+    return clientRequestErrorPlainText('Unknown error', e)
   }
 }
