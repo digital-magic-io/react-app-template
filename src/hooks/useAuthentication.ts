@@ -14,22 +14,26 @@ type ResponseParams = {
 }
 
 export const useAuthentication = (): ResponseParams => {
-  const { setAuth, invalidate } = useAuthStore()
+  const { auth, setAuth, invalidate } = useAuthStore()
   const defaultErrorHandler = useDefaultPublicErrorHandler()
+  const [isAuthenticated, setAuthenticated] = React.useState(false)
 
-  const onAuthError: RequestErrorHandler = (e) => {
+  const onAuthError: (displayError: boolean) => RequestErrorHandler = (displayError) => (e) => {
     if (e.name === HttpError && (e.httpStatus === 401 || e.httpStatus === 403)) {
       invalidateAuthState()
+      if (displayError) {
+        defaultErrorHandler(e)
+      }
     } else {
       return defaultErrorHandler(e)
     }
   }
 
-  const authentication = useGetAuthentication({ onError: onAuthError, onSuccess: setAuth })
-  const authenticate = useAuthenticate({ onError: onAuthError })
-  const invalidateAuth = useInvalidateAuthentication({ onError: onAuthError })
-
-  const isAuthenticated = React.useMemo(() => hasValue(authentication.data), [authentication.data])
+  const authentication = useGetAuthentication({ onError: onAuthError(false), onSuccess: setAuth })
+  const authenticate = useAuthenticate({
+    onError: onAuthError(true)
+  })
+  const invalidateAuth = useInvalidateAuthentication({ onError: onAuthError(false) })
 
   const invalidateAuthState = React.useCallback(() => {
     if (isAuthenticated) {
@@ -39,15 +43,23 @@ export const useAuthentication = (): ResponseParams => {
 
   const login: ResponseParams['login'] = React.useCallback(
     (request) => {
-      authenticate.mutate(request)
+      return authenticate.mutate(request)
     },
     [authenticate]
   )
 
   const logout: ResponseParams['logout'] = React.useCallback(() => {
     invalidateAuthState()
-    invalidateAuth.mutate()
+    return invalidateAuth.mutate()
   }, [invalidateAuthState, invalidateAuth])
+
+  React.useEffect(() => {
+    if (hasValue(authentication.data) && hasValue(auth)) {
+      setAuthenticated(true)
+    } else {
+      setAuthenticated(false)
+    }
+  }, [authentication.data, auth])
 
   //console.log('useAuthentication render')
 

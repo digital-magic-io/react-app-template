@@ -18,7 +18,7 @@ const Login: React.FC = () => {
 
   return (
     <Page>
-      <Form f={form}>
+      <Form f={form} onError={(e) => console.log(e)}>
         <Box display="flex" flexDirection="column" rowGap={2}>
           <h1>{t('pages.login.title')}</h1>
           <FormTextField name={form.names.username} label={t('pages.login.form.fields.username')} />

@@ -3,12 +3,15 @@
   "version": "1.0.0",
   "description": "Mock Server that handles Authentication for Front-End testing purposes",
   "scripts": {
-    "start": "ts-node ./src/index.ts"
+    "start": "nodemon ./src/api.ts"
   },
   "devDependencies": {
+    "@types/express": "^4.17.17",
     "@types/node": "^18.14.2",
+    "body-parser": "^1.20.2",
+    "express": "^4.18.2",
+    "nodemon": "^2.0.20",
     "ts-node": "^10.9.1",
-    "tslib": "^2.5.0",
     "typescript": "^4.9.5"
   }
 }
