@@ -9,6 +9,7 @@ const MainPage = React.lazy(() => import('@pages/MainPage'))
 const AboutPage = React.lazy(() => import('@pages/AboutPage'))
 const UsersPage = React.lazy(() => import('@pages/Users/UsersPage'))
 const UserPage = React.lazy(() => import('@pages/Users/UserPage'))
+const SignUpPage = React.lazy(() => import('@pages/Users/SignUpPage'))
 
 export const AppRoutes: React.FC = () => {
   const { isAuthenticated } = useAuthStore()
@@ -36,6 +37,10 @@ export const AppRoutes: React.FC = () => {
       {
         path: '*',
         element: <Navigate to={routes.Login} />
+      },
+			{
+        path: routes.SignUp,
+        element: <SignUpPage />
       }
     ],
     [sharedRoutes]

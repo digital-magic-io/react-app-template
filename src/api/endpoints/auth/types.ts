@@ -5,4 +5,5 @@ export const AuthenticationRequest = z.object({
   username: Username,
   password: Password
 })
+
 export type AuthenticationRequest = z.infer<typeof AuthenticationRequest>

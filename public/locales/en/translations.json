@@ -91,6 +91,19 @@
       },
       "title": "Sign in"
     },
+		"signUp": {
+      "form": {
+        "buttons": {
+          "submit": "Sign Up"
+        },
+        "fields": {
+          "password": "Password",
+					"confirmPassword": "Confirm password",
+          "username": "Username"
+        }
+      },
+      "title": "Sign up"
+    },
     "main": {
       "text": "Home page text",
       "title": "Home"

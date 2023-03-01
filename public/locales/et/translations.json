@@ -91,6 +91,19 @@
       },
       "title": "Sisse logimine"
     },
+		"signUp": {
+      "form": {
+        "buttons": {
+          "submit": "Registreeru"
+        },
+        "fields": {
+          "password": "Parool",
+					"confirmPassword": "Kinnita parool",
+          "username": "Kasutajanimi"
+        }
+      },
+      "title": "Registreerimine"
+    },
     "main": {
       "text": "Kodu text",
       "title": "Kodu"
