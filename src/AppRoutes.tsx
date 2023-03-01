@@ -38,7 +38,7 @@ export const AppRoutes: React.FC = () => {
         element: <Navigate to={routes.Login} />
       }
     ],
-    []
+    [sharedRoutes]
   )
   const privateRoutes: Array<RouteObject> = React.useMemo(
     () => [
@@ -60,7 +60,7 @@ export const AppRoutes: React.FC = () => {
         element: <Navigate to={routes.Index} />
       }
     ],
-    []
+    [sharedRoutes]
   )
 
   const currentRoutes: Array<RouteObject> = React.useMemo(
