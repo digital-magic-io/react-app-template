@@ -1,5 +1,6 @@
 import * as z from 'zod'
 import { FieldValues, get, useFormContext as useNativeFormContext } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import { createProxy, getPath } from 'ts-object-path'
 import { hasValue } from '@digital-magic/ts-common-utils'
 import { zodIs } from '@digital-magic/react-common/lib/utils/zod'
@@ -16,7 +17,6 @@ import {
   UseFormTypedOptions,
   UseFormTypedResult
 } from '@digital-magic/react-common/lib/components/controls/form'
-import { useTranslation } from 'react-i18next'
 import { errorMap } from './errorMap'
 
 export const useFormContext = <T extends FieldValues>(): UseFormContextResult<T> => ({
@@ -28,6 +28,7 @@ export const useFormTyped = <T extends FieldValues>(
   opts: Omit<UseFormTypedOptions<T>, 'errorMap'>
 ): UseFormTypedResult<T> => {
   const { t } = useTranslation()
+
   return useFormTypedBasic({ ...opts, errorMap: errorMap(t) })
 }
 
