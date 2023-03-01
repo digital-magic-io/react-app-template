@@ -11,7 +11,7 @@
     "reinstall": "rimraf ./node_modules && npm install"
   },
   "dependencies": {
-    "@digital-magic/react-common": "^18.2.28",
+    "@digital-magic/react-common": "^18.2.29",
     "@digital-magic/ts-common-utils": "^1.0.28",
     "@hookform/resolvers": "^2.9.11",
     "@mui/icons-material": "^5.11.11",

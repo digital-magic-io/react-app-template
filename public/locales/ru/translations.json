@@ -54,9 +54,9 @@
     },
     "form_errors": {
       "invalid_email": "Неверный формат почты",
-      "invalid_type": "Неверный тип",
-      "max_str_len": "Должно быть меньше чем  {{maxLength} знаков",
-      "min_str_len": "Должно быть больше чем  {{minLength} знаков",
+      "invalid_type": "Неверное значение",
+      "max_str_len": "Должно быть меньше чем {{maxLength}} знаков",
+      "min_str_len": "Должно быть больше чем {{minLength}} знаков",
       "required": "Обязательное поле"
     }
   },

@@ -1,8 +1,15 @@
-import { FieldValues, FormProvider } from 'react-hook-form'
-import { FormProps } from '@digital-magic/react-common/lib/components/controls/form'
+import * as React from 'react'
+import { FieldValues, FormProvider, SubmitErrorHandler, SubmitHandler, UseFormReturn } from 'react-hook-form'
 
-// TODO: Why it doesn't work if imported from another project?
-//export { Form } from '@digital-magic/react-common/lib/components/controls/form'
+export type FormProps<T extends FieldValues> = Omit<React.HTMLAttributes<HTMLFormElement>, 'onSubmit'> &
+  React.PropsWithChildren &
+  Readonly<{
+    f: UseFormReturn<T> &
+      Readonly<{
+        onSubmit: SubmitHandler<T>
+      }>
+    onInvalid?: SubmitErrorHandler<T>
+  }>
 
 export const Form = <T extends FieldValues>({ children, f, onInvalid, ...props }: FormProps<T>): JSX.Element => {
   return (

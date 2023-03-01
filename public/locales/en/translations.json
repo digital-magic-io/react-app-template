@@ -54,7 +54,7 @@
     },
     "form_errors": {
       "invalid_email": "Invalid email format",
-      "invalid_type": "Invalid type",
+      "invalid_type": "Invalid value",
       "max_str_len": "Should be less than {{maxLength}} characters long",
       "min_str_len": "Should be at least {{minLength}} characters long",
       "required": "This field is required"

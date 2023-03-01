@@ -54,7 +54,7 @@
     },
     "form_errors": {
       "invalid_email": "Kehtetu meilivorming",
-      "invalid_type": "Sobimatu tüüp",
+      "invalid_type": "Sobimatu värtus",
       "max_str_len": "Peaks olema lühem kui {{maxLength}} tähemärki",
       "min_str_len": "Peaks olema vähemalt {{minLength}} tähemärki pikk",
       "required": "Selle välja täitmine on kohustuslik"

@@ -10,19 +10,24 @@ export const errorMap =
     // if more error translations are needed, add cases for them here
     // example: https://github.com/colinhacks/zod/blob/master/ERROR_HANDLING.md#customizing-errors-with-zoderrormap
     switch (error.code) {
-      case 'invalid_string':
+      case z.ZodIssueCode.invalid_string:
         if (error.validation === 'email') {
           message = t('global.form_errors.invalid_email')
+        } else if (error.validation === 'regex') {
+          message = t('global.form_errors.invalid_type')
+        } else {
+          // TODO: Cover more cases
+          message = t('global.form_errors.invalid_type')
         }
         break
-      case 'invalid_type':
+      case z.ZodIssueCode.invalid_type:
         if (error.received === 'undefined') {
           message = t('global.form_errors.required')
         } else {
           message = t('global.form_errors.invalid_type')
         }
         break
-      case 'too_small':
+      case z.ZodIssueCode.too_small:
         if (error.type === 'string') {
           if (error.minimum === 1) {
             message = t('global.form_errors.required')
@@ -31,7 +36,7 @@ export const errorMap =
           }
         }
         break
-      case 'too_big':
+      case z.ZodIssueCode.too_big:
         if (error.type === 'string') {
           message = t('global.form_errors.max_str_len', { maxLength: error.maximum })
         }

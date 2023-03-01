@@ -4,7 +4,7 @@ import { AuthenticationRequest } from '@api/endpoints/auth/types'
 import { useAuthentication } from '@hooks/useAuthentication'
 import { Alert, Box } from '@mui/material'
 import { Page } from '@layout/Page'
-import { Form, FormTextField, useForm } from '@controls/Form'
+import { Form, FormTextField, useFormTyped } from '@controls/Form'
 import { Button } from '@controls/Button'
 import { hasValue } from '@digital-magic/ts-common-utils'
 import { useEnumTranslation } from '@hooks/Translation/useEnumTranslation'
@@ -14,7 +14,7 @@ const LoginPage: React.FC = () => {
   const { login, logoutReason } = useAuthentication()
   const { logoutReasonTranslation } = useEnumTranslation()
 
-  const form = useForm({
+  const form = useFormTyped({
     resolver: AuthenticationRequest,
     onSubmit: login
   })

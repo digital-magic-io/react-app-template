@@ -11,15 +11,26 @@ import {
   UseFormInputPropsResult
 } from '@digital-magic/react-common/lib/components/controls/form/types'
 import { propertyKeysToPath } from '@digital-magic/react-common/lib/components/controls/form/utils'
-//import { useFormInputProps, useFormErrorMessage } from '@digital-magic/react-common/lib/components/controls/form/hooks'
+import {
+  useFormTypedBasic,
+  UseFormTypedOptions,
+  UseFormTypedResult
+} from '@digital-magic/react-common/lib/components/controls/form'
+import { useTranslation } from 'react-i18next'
+import { errorMap } from './errorMap'
 
-// TODO: Why it doesn't work if imported from another project?
 export const useFormContext = <T extends FieldValues>(): UseFormContextResult<T> => ({
   ...useNativeFormContext<T>(),
   names: createProxy<DeepRequired<T>>()
 })
 
-// TODO: Why it doesn't work if imported from another project?
+export const useFormTyped = <T extends FieldValues>(
+  opts: Omit<UseFormTypedOptions<T>, 'errorMap'>
+): UseFormTypedResult<T> => {
+  const { t } = useTranslation()
+  return useFormTypedBasic({ ...opts, errorMap: errorMap(t) })
+}
+
 export const useFormErrorMessage = (name: string): string | undefined => {
   const f = useFormContext()
 
@@ -34,7 +45,6 @@ export const useFormErrorMessage = (name: string): string | undefined => {
   return zodIs(err, FieldError) ? err.message : undefined
 }
 
-// TODO: Why it doesn't work if imported from another project?
 export const useFormInputProps = <T>(props: FormInputProps<T>): UseFormInputPropsResult => {
   const name = propertyKeysToPath(getPath(props.name))
   const error = useFormErrorMessage(name)

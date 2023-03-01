@@ -22,6 +22,6 @@ export const useEnumTranslation = (): HookResult => {
     }),
     // TODO: Can we achieve correct memoization without breading eslint rule?
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [i18n, t]
+    [i18n.language]
   )
 }

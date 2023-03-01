@@ -7,7 +7,7 @@ import { User, UserCreatedResponse } from '@api/endpoints/users/types'
 import { useCreateUser, useDeleteUser, useGetUser, useUpdateUser } from '@api/endpoints/users/requests'
 import { useDefaultPublicErrorHandler } from '@hooks/useDefaultPublicErrorHandler'
 import { useEnumTranslation } from '@hooks/Translation/useEnumTranslation'
-import { Form, FormSelectField, FormTextField, useForm } from '@controls/Form'
+import { Form, FormSelectField, FormTextField, useFormTyped } from '@controls/Form'
 import { Box, CircularProgress, Typography } from '@mui/material'
 import { Page } from '@layout/Page'
 import { ValueLabel } from '@controls/SelectField'
@@ -49,7 +49,7 @@ const UserPage: React.FC = () => {
 
   const isLoading: boolean = createUser.isLoading || updateUser.isLoading || deleteUser.isLoading || getUser.isLoading
 
-  const form = useForm({
+  const form = useFormTyped({
     resolver: User,
     onSubmit: (data) => (hasValue(params.username) ? updateUser.mutate(data) : createUser.mutate(data))
   })
