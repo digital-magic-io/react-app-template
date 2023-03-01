@@ -45,6 +45,7 @@ export const useAuthentication = (): HookResult => {
     onSuccess: onAuthenticationSuccess,
     enabled: needUserInfo
   })
+
   const authenticate = useAuthenticate({ onError: onAuthError('InvalidLogin'), onSuccess: () => setNeedUserInfo(true) })
   // eslint-disable-next-line functional/prefer-tacit
   const invalidateAuth = useInvalidateAuthentication({

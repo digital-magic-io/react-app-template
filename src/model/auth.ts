@@ -1,5 +1,5 @@
 import * as z from 'zod'
-import { DisplayName, EmailAddress } from '@model/common'
+import { DisplayName, Username } from '@model/common'
 
 export type LogoutReason = 'SignedOut' | 'InvalidLogin' | 'TimedOut'
 
@@ -10,7 +10,7 @@ export type UserRole = z.infer<typeof UserRole>
 export const allRoles: ReadonlyArray<UserRole> = ['Admin', 'User']
 
 export const Authentication = z.object({
-  username: EmailAddress,
+  username: Username,
   displayName: DisplayName,
   role: UserRole
 })

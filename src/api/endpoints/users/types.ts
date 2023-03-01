@@ -2,9 +2,6 @@ import * as z from 'zod'
 import { Authentication } from '@model/auth'
 import { AuthenticationRequest } from '@api/endpoints/auth/types'
 
-export const Username = z.string()
-export type Username = z.infer<typeof Username>
-
 export const User = Authentication.extend(AuthenticationRequest.shape)
 export type User = z.infer<typeof User>
 

@@ -9,7 +9,7 @@ type SnackbarContext = {
 
 const SnackbarContext = createContext({} as SnackbarContext)
 
-const CustomSnackbarProvider: React.FC<React.PropsWithChildren<unknown>> = ({ children }) => {
+const CustomSnackbarProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
   const snackbar = useSnackbar()
 
   const open = useCallback((props: SnackbarProps) => {

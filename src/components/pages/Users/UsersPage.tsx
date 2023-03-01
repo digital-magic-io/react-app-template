@@ -2,7 +2,8 @@ import * as React from 'react'
 import { useTranslation } from 'react-i18next'
 import { generatePath, useNavigate } from 'react-router-dom'
 import { routes } from '@constants/routes'
-import { User, UserList, Username } from '@api/endpoints/users/types'
+import { Username } from '@model/common'
+import { User, UserList } from '@api/endpoints/users/types'
 import { useGetUsers } from '@api/endpoints/users/requests'
 import { useDefaultPublicErrorHandler } from '@hooks/useDefaultPublicErrorHandler'
 import { Page } from '@layout/Page'
@@ -14,15 +15,11 @@ import { HtmlMouseButtonEventHandler } from '@digital-magic/react-common'
 
 const UsersPage: React.FC = () => {
   const navigate = useNavigate()
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation()
   const defaultErrorHandler = useDefaultPublicErrorHandler()
   const getUsers = useGetUsers({ onError: defaultErrorHandler })
 
   const isLoading = getUsers.isLoading
-
-  const onEditClick: Handler<Username> = (username) => {
-    navigate(generatePath(routes.UserEdit, { username: username } /*, { replace: true }*/))
-  }
 
   const columns: Array<GridColDef<User>> = React.useMemo(
     () => [
@@ -38,13 +35,13 @@ const UsersPage: React.FC = () => {
       }
     ],
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [i18n]
+    [t]
   )
 
   const rows: UserList = React.useMemo(
     () =>
       getUsers.data
-        ?.concat()
+        //?.concat()
         ?.map((v) => ({ id: v.username, ...v }))
         ?.sort((a, b) => a.displayName.localeCompare(b.displayName)) ?? [],
     [getUsers.data]
@@ -53,6 +50,10 @@ const UsersPage: React.FC = () => {
   const onRefreshClick: HtmlMouseButtonEventHandler = (e) => {
     e.preventDefault()
     void getUsers.refetch()
+  }
+
+  const onEditClick: Handler<Username> = (username) => {
+    navigate(generatePath(routes.UserEdit, { username: username } /*, { replace: true }*/))
   }
 
   return (

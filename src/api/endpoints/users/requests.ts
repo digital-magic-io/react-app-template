@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { useApiMutation, useApiQuery } from '@digital-magic/react-common/lib/api'
 import { apiBaseUrlV1 } from '@constants/configuration'
+import { Username } from '@model/common'
 import { ApiMutationOpts, ApiQueryOpts } from '@api/types'
 import { callOnly, receiveOnly, sendAndReceive, sendOnly } from '@api/utils'
-import { User, UserCreatedResponse, UserList, Username } from '@api/endpoints/users/types'
+import { User, UserCreatedResponse, UserList } from '@api/endpoints/users/types'
 
 const usersUrl = `${apiBaseUrlV1}/users`
 const userUrl = (username: Username): string => `${usersUrl}/${username}`

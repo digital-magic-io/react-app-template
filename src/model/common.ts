@@ -36,3 +36,6 @@ export type FreeFormText = z.infer<typeof FreeFormText>
 
 export const Password = z.string().min(6).max(16)
 export type Password = z.infer<typeof Password>
+
+export const Username = EmailAddress
+export type Username = EmailAddress

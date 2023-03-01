@@ -1,9 +1,9 @@
 import { useTranslation } from 'react-i18next'
 import { hasValue } from '@digital-magic/ts-common-utils'
+import { isClientErrorTranslation } from '@digital-magic/react-common/lib/errors'
 import { RequestErrorHandler, RequestErrorMapper } from '@api/types'
 import { defaultRequestErrorMapper } from '@api/utils'
 import { useSnackbarContext } from '@context/SnackbarContext'
-import { isClientErrorTranslation } from '@digital-magic/react-common/lib/errors'
 
 export const useDefaultPublicErrorHandler = (
   requestErrorMapper: RequestErrorMapper = defaultRequestErrorMapper
