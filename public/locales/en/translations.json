@@ -82,7 +82,8 @@
     "login": {
       "form": {
         "buttons": {
-          "submit": "Login"
+          "submit": "Login",
+										"register": "Sign Up"
         },
         "fields": {
           "password": "Password",

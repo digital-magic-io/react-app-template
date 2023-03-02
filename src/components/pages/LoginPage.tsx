@@ -8,6 +8,8 @@ import { Form, FormTextField, useFormTyped } from '@controls/Form'
 import { Button } from '@controls/Button'
 import { hasValue } from '@digital-magic/ts-common-utils'
 import { useEnumTranslation } from '@hooks/Translation/useEnumTranslation'
+import { Link } from '@controls/Link'
+import { routes } from '@constants/routes'
 
 const LoginPage: React.FC = () => {
   const { t } = useTranslation()
@@ -29,6 +31,7 @@ const LoginPage: React.FC = () => {
           <FormTextField name={form.names.username} label={t('pages.login.form.fields.username')} />
           <FormTextField name={form.names.password} label={t('pages.login.form.fields.password')} />
           <Button type="submit">{t('pages.login.form.buttons.submit')}</Button>
+          <Link to={routes.SignUp}>{t('pages.login.form.buttons.register')}</Link>
         </Box>
       </Form>
     </Page>

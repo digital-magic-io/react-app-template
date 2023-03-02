@@ -82,7 +82,8 @@
     "login": {
       "form": {
         "buttons": {
-          "submit": "Войти"
+          "submit": "Войти",
+										"register": "Зарегистрироваться"
         },
         "fields": {
           "password": "Пароль",

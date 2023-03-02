@@ -82,7 +82,8 @@
     "login": {
       "form": {
         "buttons": {
-          "submit": "Logi sisse"
+          "submit": "Logi sisse",
+										"register": "Registreeri"
         },
         "fields": {
           "password": "Parool",
