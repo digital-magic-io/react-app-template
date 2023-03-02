@@ -103,7 +103,8 @@
           "displayName": "Display Name"
         },
         "errors": {
-          "userExists": "Such a user has already been created"
+          "userExists": "Such a user has already been created",
+          "passwordsMismatch": "Passwords must match"
         }
       },
       "title": "Sign up"
