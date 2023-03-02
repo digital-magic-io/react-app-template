@@ -1,9 +1,6 @@
 import * as React from 'react'
 import { Controller, useFormContext } from 'react-hook-form'
-import { useTranslation } from 'react-i18next'
-import { getPath } from 'ts-object-path'
-import { hasValue, isEmpty } from '@digital-magic/ts-common-utils'
-import { propertyKeysToPath } from '@digital-magic/react-common/lib/components/controls/form/utils'
+import { isEmpty } from '@digital-magic/ts-common-utils'
 import { HtmlInputChangeEventHandler } from '@digital-magic/react-common'
 import { FormHelperText } from '@mui/material'
 import { useFormInputProps, FormInputProps, useRevalidateFieldOnLanguageChange } from './'
@@ -14,20 +11,11 @@ type FormFileInputProps = FormInputProps<FileList> &
 export const FormFileInput: React.FC<FormFileInputProps> = (props) => {
   const f = useFormContext()
   const inputProps = useFormInputProps(props)
-  const { i18n } = useTranslation()
 
   useRevalidateFieldOnLanguageChange(props.name, f)
 
   // eslint-disable-next-line functional/prefer-tacit
   const id: string = React.useId()
-
-  React.useEffect(() => {
-    const name = propertyKeysToPath(getPath(props.name))
-    if (f.getFieldState(name).isDirty && hasValue(inputProps.error)) {
-      void f.trigger(name)
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [i18n.language])
 
   const handleChange =
     (changeHandler: (value: FileList | undefined) => void): HtmlInputChangeEventHandler =>
