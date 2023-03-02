@@ -64,14 +64,15 @@ app.get(usersPath, (req, res, next) => {
 })
 
 app.post(usersPath, (req, res, next) => {
-  if (authInfo) {
-    const userReq: AuthRequest & AuthInfo = req.body
-    if (userReq.username && userReq.displayName && userReq.role && userReq.password) {
+  const userReq: AuthRequest & AuthInfo = req.body
+  if (userReq.username && userReq.displayName && userReq.role && userReq.password) {
+    const user = users.find((u) => u.username === userReq.username)
+    if (!user) {
       users.push(userReq)
       res.status(201).json({ username: userReq.username })
       next()
     } else {
-      res.sendStatus(400)
+      res.sendStatus(409)
       next()
     }
   } else {
