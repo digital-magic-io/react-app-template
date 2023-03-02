@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Controller, useFormContext } from 'react-hook-form'
 import { SelectField, SelectFieldProps, SelectValueType } from '../SelectField'
-import {useFormInputProps, FormInputProps, useRevalidateAtLanguageChange} from './'
+import { useFormInputProps, FormInputProps, useRevalidateFieldOnLanguageChange } from './'
 
 type Props<T extends SelectValueType> = FormInputProps<T> & Omit<SelectFieldProps<T>, 'name' | 'value' | 'onChange'>
 
@@ -9,7 +9,7 @@ export const FormSelectField = <T extends SelectValueType>(props: Props<T>): JSX
   const f = useFormContext()
   const inputProps = useFormInputProps(props)
 
-  useRevalidateAtLanguageChange(props.name, f)
+  useRevalidateFieldOnLanguageChange(props.name, f)
 
   return (
     <Controller

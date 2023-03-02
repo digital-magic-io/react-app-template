@@ -1,5 +1,6 @@
+import * as React from 'react'
 import * as z from 'zod'
-import { FieldValues, get, useFormContext as useNativeFormContext } from 'react-hook-form'
+import { FieldValues, get, UseFormReturn, useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { createProxy, getPath, ObjProxyArg } from 'ts-object-path'
 import { hasValue } from '@digital-magic/ts-common-utils'
@@ -18,12 +19,9 @@ import {
   UseFormTypedResult
 } from '@digital-magic/react-common/lib/components/controls/form'
 import { errorMap } from './errorMap'
-import * as React from 'react'
-import { i18n } from '../../../i18n'
-import { UseFormReturn } from 'react-hook-form/dist/types'
 
-export const useFormContext = <T extends FieldValues>(): UseFormContextResult<T> => ({
-  ...useNativeFormContext<T>(),
+export const useFormContextTyped = <T extends FieldValues>(): UseFormContextResult<T> => ({
+  ...useFormContext<T>(),
   names: createProxy<DeepRequired<T>>()
 })
 
@@ -36,7 +34,7 @@ export const useFormTyped = <T extends FieldValues>(
 }
 
 export const useFormErrorMessage = (name: string): string | undefined => {
-  const f = useFormContext()
+  const f = useFormContextTyped()
 
   // eslint-disable-next-line functional/no-let
   let err: unknown = get(f.formState.errors, name)
@@ -61,11 +59,12 @@ export const useFormInputProps = <T>(props: FormInputProps<T>): UseFormInputProp
 }
 
 // have the field helper text re-generate as a result of a language change
-export function useRevalidateAtLanguageChange<T>(name0: ObjProxyArg<T, T>, form: UseFormReturn): void {
+export function useRevalidateFieldOnLanguageChange<T>(name: ObjProxyArg<T, T>, form: UseFormReturn): void {
+  const { i18n } = useTranslation()
   React.useEffect(() => {
-    const name = propertyKeysToPath(getPath(name0))
-    if (undefined !== get(form.formState.errors, name)) {
-      void form.trigger(name)
+    const fieldName = propertyKeysToPath(getPath(name))
+    if (undefined !== get(form.formState.errors, fieldName)) {
+      void form.trigger(fieldName)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [i18n.language])

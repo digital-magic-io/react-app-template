@@ -6,7 +6,7 @@ import { hasValue } from '@digital-magic/ts-common-utils'
 import { HtmlInputChangeEventHandler } from '@digital-magic/react-common'
 import { propertyKeysToPath } from '@digital-magic/react-common/lib/components/controls/form/utils'
 import { TextField, TextFieldProps } from '@mui/material'
-import { FormInputProps, useFormInputProps, useRevalidateAtLanguageChange } from './'
+import { FormInputProps, useFormInputProps, useRevalidateFieldOnLanguageChange } from './'
 
 type Props = FormInputProps<string | number> & Omit<TextFieldProps, 'name' | 'value' | 'onChange'>
 
@@ -23,7 +23,7 @@ export const FormTextField: React.FC<Props> = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [i18n.language])
 
-  useRevalidateAtLanguageChange(props.name, f)
+  useRevalidateFieldOnLanguageChange(props.name, f)
 
   const transformValue = (value: string | number): string | number | undefined => {
     if (typeof value === 'string' && value.length > 0) {

@@ -6,7 +6,7 @@ import { hasValue, isEmpty } from '@digital-magic/ts-common-utils'
 import { propertyKeysToPath } from '@digital-magic/react-common/lib/components/controls/form/utils'
 import { HtmlInputChangeEventHandler } from '@digital-magic/react-common'
 import { FormHelperText } from '@mui/material'
-import {useFormInputProps, FormInputProps, useRevalidateAtLanguageChange} from './'
+import { useFormInputProps, FormInputProps, useRevalidateFieldOnLanguageChange } from './'
 
 type FormFileInputProps = FormInputProps<FileList> &
   Omit<React.HTMLProps<HTMLInputElement>, 'name' | 'value' | 'onChange' | 'type'>
@@ -16,7 +16,7 @@ export const FormFileInput: React.FC<FormFileInputProps> = (props) => {
   const inputProps = useFormInputProps(props)
   const { i18n } = useTranslation()
 
-  useRevalidateAtLanguageChange(props.name, f)
+  useRevalidateFieldOnLanguageChange(props.name, f)
 
   // eslint-disable-next-line functional/prefer-tacit
   const id: string = React.useId()
