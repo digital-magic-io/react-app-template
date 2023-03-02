@@ -99,8 +99,12 @@
         "fields": {
           "password": "Password",
 					"confirmPassword": "Confirm password",
-          "username": "Username"
-        }
+          "username": "Username",
+					"displayName": "Display Name"
+        },
+				"errors": {
+					"userExists": "Such a user has already been created"
+				}
       },
       "title": "Sign up"
     },
