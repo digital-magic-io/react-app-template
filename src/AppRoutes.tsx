@@ -9,11 +9,12 @@ const MainPage = React.lazy(() => import('@pages/MainPage'))
 const AboutPage = React.lazy(() => import('@pages/AboutPage'))
 const UsersPage = React.lazy(() => import('@pages/Users/UsersPage'))
 const UserPage = React.lazy(() => import('@pages/Users/UserPage'))
+const SignUpPage = React.lazy(() => import('@pages/Users/SignUpPage'))
 
 export const AppRoutes: React.FC = () => {
   const { isAuthenticated } = useAuthStore()
 
-	const sharedRoutes: Array<RouteObject> = React.useMemo(
+  const sharedRoutes: Array<RouteObject> = React.useMemo(
     () => [
       {
         path: routes.Index,
@@ -22,13 +23,13 @@ export const AppRoutes: React.FC = () => {
       {
         path: routes.About,
         element: <AboutPage />
-      },
+      }
     ],
     []
   )
   const publicRoutes: Array<RouteObject> = React.useMemo(
     () => [
-			...sharedRoutes,
+      ...sharedRoutes,
       {
         path: routes.Login,
         element: <LoginPage />
@@ -36,13 +37,17 @@ export const AppRoutes: React.FC = () => {
       {
         path: '*',
         element: <Navigate to={routes.Login} />
+      },
+      {
+        path: routes.SignUp,
+        element: <SignUpPage />
       }
     ],
     [sharedRoutes]
   )
   const privateRoutes: Array<RouteObject> = React.useMemo(
     () => [
-			...sharedRoutes,
+      ...sharedRoutes,
       {
         path: routes.Users,
         element: <UsersPage />

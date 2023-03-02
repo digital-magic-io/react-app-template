@@ -6,5 +6,6 @@ export const routes = {
   Users: usersRoute,
   UserNew: `${usersRoute}/new`,
   UserEdit: `${usersRoute}/:username`,
-  Login: '/login'
+  Login: '/login',
+  SignUp: '/signup'
 } as const

@@ -62,7 +62,7 @@
   },
   "layout": {
     "footer": {
-      "text": "Digital Magic MUI5 Material Template (c) 2023 Все права защищены"
+      "text": "Digital Magic 2023 (c) Все права защищены"
     },
     "header": {
       "menu": {
@@ -82,7 +82,8 @@
     "login": {
       "form": {
         "buttons": {
-          "submit": "Войти"
+          "submit": "Войти",
+										"register": "Зарегистрироваться"
         },
         "fields": {
           "password": "Пароль",
@@ -90,6 +91,23 @@
         }
       },
       "title": "Вход"
+    },
+    "signUp": {
+      "form": {
+        "buttons": {
+          "submit": "Зарегистрироваться"
+        },
+        "fields": {
+          "password": "Пароль",
+          "confirmPassword": "Подтвердить пароль",
+          "username": "Имя пользователя",
+          "displayName": "Отображаемое имя"
+        },
+        "errors": {
+          "userExists": "Такой пользователь уже существует"
+        }
+      },
+      "title": "Регистрация"
     },
     "main": {
       "text": "Текст для домашней страницы",
