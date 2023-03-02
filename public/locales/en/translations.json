@@ -62,7 +62,7 @@
   },
   "layout": {
     "footer": {
-      "text": "Digital Magic MUI5 Material Template (c) 2023 All rights reserved"
+      "text": "Digital Magic 2023 (c) All rights reserved"
     },
     "header": {
       "menu": {
@@ -91,20 +91,20 @@
       },
       "title": "Sign in"
     },
-		"signUp": {
+    "signUp": {
       "form": {
         "buttons": {
           "submit": "Sign Up"
         },
         "fields": {
           "password": "Password",
-					"confirmPassword": "Confirm password",
+          "confirmPassword": "Confirm password",
           "username": "Username",
-					"displayName": "Display Name"
+          "displayName": "Display Name"
         },
-				"errors": {
-					"userExists": "Such a user has already been created"
-				}
+        "errors": {
+          "userExists": "Such a user has already been created"
+        }
       },
       "title": "Sign up"
     },

@@ -62,7 +62,7 @@
   },
   "layout": {
     "footer": {
-      "text": "Digital Magic MUI5 Material Template (c) 2023 Kõik õigused kaitstud"
+      "text": "Digital Magic 2023 (c) Kõik õigused kaitstud"
     },
     "header": {
       "menu": {
@@ -91,20 +91,20 @@
       },
       "title": "Sisse logimine"
     },
-		"signUp": {
+    "signUp": {
       "form": {
         "buttons": {
           "submit": "Registreeru"
         },
         "fields": {
           "password": "Parool",
-					"confirmPassword": "Kinnita parool",
+          "confirmPassword": "Kinnita parool",
           "username": "Kasutajanimi",
-					"displayName": "Kuvatav nimi"
+          "displayName": "Kuvatav nimi"
         },
-				"errors": {
-					"userExists": "See kasutaja on juba olemas"
-				}
+        "errors": {
+          "userExists": "See kasutaja on juba olemas"
+        }
       },
       "title": "Registreerimine"
     },

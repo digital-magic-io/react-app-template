@@ -8,6 +8,8 @@
     "test": "NODE_ENV=test jest",
     "lint": "eslint .",
     "lint:fix": "eslint --fix --ext .ts,.tsx .",
+    "prettier": "pretty-quick --check --pattern \"src/**/*.*(ts|tsx)\" --pattern \"test/**/*.*(ts|tsx)\"",
+    "fix-prettier": "pretty-quick --pattern \"src/**/*.*(ts|tsx)\" --pattern \"test/**/*.*(ts|tsx)\"",
     "reinstall": "rimraf ./node_modules && npm install"
   },
   "dependencies": {

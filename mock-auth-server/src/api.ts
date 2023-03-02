@@ -25,7 +25,6 @@ app.get(authPath, (req, res, next) => {
 })
 
 app.post(authPath, (req, res, next) => {
-	
   const authReq: AuthRequest = req.body
   const user = users.find((u) => u.username === authReq.username && u.password === authReq.password)
   if (user) {
@@ -66,16 +65,16 @@ app.get(usersPath, (req, res, next) => {
 
 app.post(usersPath, (req, res, next) => {
   const userReq: AuthRequest & AuthInfo = req.body
-	if (userReq.username && userReq.displayName && userReq.role && userReq.password) {
-		const user = users.find((u) => u.username === userReq.username)
-		if (!user) {
-			users.push(userReq)
-    	res.status(201).json({ username: userReq.username })
-    	next()
-		} else {
-			res.sendStatus(409)
-			next()
-		}
+  if (userReq.username && userReq.displayName && userReq.role && userReq.password) {
+    const user = users.find((u) => u.username === userReq.username)
+    if (!user) {
+      users.push(userReq)
+      res.status(201).json({ username: userReq.username })
+      next()
+    } else {
+      res.sendStatus(409)
+      next()
+    }
   } else {
     res.sendStatus(401)
     next()
