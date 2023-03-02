@@ -10,7 +10,7 @@ export const FormTextField: React.FC<Props> = (props) => {
   const f = useFormContext()
   const inputProps = useFormInputProps(props)
 
-  useRevalidateFieldOnLanguageChange(props.name, f)
+  useRevalidateFieldOnLanguageChange(inputProps.name, f)
 
   const transformValue = (value: string | number): string | number | undefined => {
     if (typeof value === 'string' && value.length > 0) {

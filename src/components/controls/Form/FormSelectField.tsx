@@ -9,7 +9,7 @@ export const FormSelectField = <T extends SelectValueType>(props: Props<T>): JSX
   const f = useFormContext()
   const inputProps = useFormInputProps(props)
 
-  useRevalidateFieldOnLanguageChange(props.name, f)
+  useRevalidateFieldOnLanguageChange(inputProps.name, f)
 
   return (
     <Controller

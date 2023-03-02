@@ -17,7 +17,7 @@ export const FormCheckbox: React.FC<Props> = ({ className, ...props }) => {
   const { name, error, helperText } = useFormInputProps(props)
   const { hideErrorMessage, ...inputProps } = props
 
-  useRevalidateFieldOnLanguageChange(props.name, f)
+  useRevalidateFieldOnLanguageChange(name, f)
 
   return (
     <FormControl component="fieldset" error={error} className={className}>

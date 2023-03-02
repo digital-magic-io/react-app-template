@@ -12,7 +12,7 @@ export const FormFileInput: React.FC<FormFileInputProps> = (props) => {
   const f = useFormContext()
   const inputProps = useFormInputProps(props)
 
-  useRevalidateFieldOnLanguageChange(props.name, f)
+  useRevalidateFieldOnLanguageChange(inputProps.name, f)
 
   // eslint-disable-next-line functional/prefer-tacit
   const id: string = React.useId()

@@ -1,8 +1,8 @@
 import * as React from 'react'
 import * as z from 'zod'
-import { FieldValues, get, UseFormReturn, useFormContext } from 'react-hook-form'
+import { FieldValues, get, UseFormReturn, useFormContext, FieldPath } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { createProxy, getPath, ObjProxyArg } from 'ts-object-path'
+import { createProxy, getPath } from 'ts-object-path'
 import { hasValue } from '@digital-magic/ts-common-utils'
 import { zodIs } from '@digital-magic/react-common/lib/utils/zod'
 import {
@@ -59,10 +59,12 @@ export const useFormInputProps = <T>(props: FormInputProps<T>): UseFormInputProp
 }
 
 // have the field helper text re-generate as a result of a language change
-export function useRevalidateFieldOnLanguageChange<T>(name: ObjProxyArg<T, T>, form: UseFormReturn): void {
+export function useRevalidateFieldOnLanguageChange<TFieldValues extends FieldValues>(
+  fieldName: FieldPath<TFieldValues>,
+  form: UseFormReturn<TFieldValues>
+): void {
   const { i18n } = useTranslation()
   React.useEffect(() => {
-    const fieldName = propertyKeysToPath(getPath(name))
     if (undefined !== get(form.formState.errors, fieldName)) {
       void form.trigger(fieldName)
     }
