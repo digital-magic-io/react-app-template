@@ -82,8 +82,8 @@
     "login": {
       "form": {
         "buttons": {
-          "submit": "Login",
-										"register": "Sign Up"
+          "register": "Sign Up",
+          "submit": "Login"
         },
         "fields": {
           "password": "Password",
@@ -92,27 +92,27 @@
       },
       "title": "Sign in"
     },
+    "main": {
+      "text": "Home page text",
+      "title": "Home"
+    },
     "signUp": {
       "form": {
         "buttons": {
           "submit": "Sign Up"
         },
-        "fields": {
-          "password": "Password",
-          "confirmPassword": "Confirm password",
-          "username": "Username",
-          "displayName": "Display Name"
-        },
         "errors": {
-          "userExists": "Such a user has already been created",
-          "passwordsMismatch": "Passwords must match"
+          "passwordsMismatch": "Passwords must match",
+          "userExists": "Such a user has already been created"
+        },
+        "fields": {
+          "confirmPassword": "Confirm password",
+          "displayName": "Display Name",
+          "password": "Password",
+          "username": "Username"
         }
       },
       "title": "Sign up"
-    },
-    "main": {
-      "text": "Home page text",
-      "title": "Home"
     },
     "user": {
       "edit": {

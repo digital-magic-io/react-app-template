@@ -82,8 +82,8 @@
     "login": {
       "form": {
         "buttons": {
-          "submit": "Logi sisse",
-										"register": "Registreeri"
+          "register": "Registreeri",
+          "submit": "Logi sisse"
         },
         "fields": {
           "password": "Parool",
@@ -92,26 +92,27 @@
       },
       "title": "Sisse logimine"
     },
+    "main": {
+      "text": "Kodu text",
+      "title": "Kodu"
+    },
     "signUp": {
       "form": {
         "buttons": {
           "submit": "Registreeru"
         },
-        "fields": {
-          "password": "Parool",
-          "confirmPassword": "Kinnita parool",
-          "username": "Kasutajanimi",
-          "displayName": "Kuvatav nimi"
-        },
         "errors": {
+          "passwordsMismatch": "Salasõnad peavad kattuma",
           "userExists": "See kasutaja on juba olemas"
+        },
+        "fields": {
+          "confirmPassword": "Kinnita parool",
+          "displayName": "Kuvatav nimi",
+          "password": "Parool",
+          "username": "Kasutajanimi"
         }
       },
       "title": "Registreerimine"
-    },
-    "main": {
-      "text": "Kodu text",
-      "title": "Kodu"
     },
     "user": {
       "edit": {

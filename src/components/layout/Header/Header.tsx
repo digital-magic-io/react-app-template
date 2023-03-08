@@ -2,7 +2,7 @@ import * as React from 'react'
 import { useTranslation } from 'react-i18next'
 import { NavLink, NavLinkProps, useNavigate } from 'react-router-dom'
 import { TFunction } from 'i18next'
-import { hasValue, NullableType } from '@digital-magic/ts-common-utils'
+import { hasValue } from '@digital-magic/ts-common-utils'
 import { controlClassName, HtmlMouseButtonEventHandler, HtmlMouseEventHandler } from '@digital-magic/react-common'
 import { routes } from '@constants/routes'
 import { UserLanguage } from '@model/language'
@@ -10,11 +10,12 @@ import { useAuthStore } from '@stores/useAuthStore'
 import { useAuthentication } from '@hooks/useAuthentication'
 import { useTheme } from '@hooks/useTheme'
 import { useEnumTranslation } from '@hooks/Translation/useEnumTranslation'
-import { Box, Container, IconButton, Menu, MenuItem, Toolbar, Typography } from '@mui/material'
+import { Box, Container, IconButton, MenuItem, Toolbar, Typography } from '@mui/material'
 import { DarkMode, LightMode, Menu as MenuIcon } from '@mui/icons-material'
 import { Link } from '@controls/Link'
 import { Button } from '@controls/Button'
 import { HeaderStyled } from './style'
+import { MenuTrigger } from '@controls/Menu/MenuTrigger'
 
 type MenuItemProps = {
   title: ReturnType<TFunction>
@@ -23,20 +24,11 @@ type MenuItemProps = {
 
 export const Header: React.FC = () => {
   const { i18n, t } = useTranslation()
-  const [anchorMenu, setAnchorMenu] = React.useState<NullableType<HTMLElement>>(null)
   const { currentTheme, switchTheme } = useTheme()
   const displayName = useAuthStore((state) => state.auth?.displayName)
   const { logout } = useAuthentication()
   const navigate = useNavigate()
   const { languageTranslation } = useEnumTranslation()
-
-  const handleCloseNavMenu: React.DispatchWithoutAction = () => {
-    setAnchorMenu(null)
-  }
-
-  const handleOpenNavMenu: React.Dispatch<React.MouseEvent<HTMLElement>> = (e) => {
-    setAnchorMenu(e.currentTarget)
-  }
 
   const handleSwitchThemeClick: HtmlMouseButtonEventHandler = (e) => {
     e.preventDefault()
@@ -45,7 +37,6 @@ export const Header: React.FC = () => {
 
   const handleMenuItemClick: (to: NavLinkProps['to']) => HtmlMouseEventHandler = (to) => (e) => {
     e.preventDefault()
-    handleCloseNavMenu()
     navigate(to)
   }
 
@@ -87,19 +78,8 @@ export const Header: React.FC = () => {
             <Link to={routes.Index}>{t('app.title')}</Link>
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
+            <MenuTrigger
               id="header-menu-pages"
-              anchorEl={anchorMenu}
               anchorOrigin={{
                 vertical: 'bottom',
                 horizontal: 'left'
@@ -109,18 +89,30 @@ export const Header: React.FC = () => {
                 vertical: 'top',
                 horizontal: 'left'
               }}
-              open={Boolean(anchorMenu)}
-              onClose={handleCloseNavMenu}
               sx={{
                 display: { xs: 'block', md: 'none' }
               }}
+              renderMenu={() =>
+                menuItems.map((item, index) => (
+                  <MenuItem key={index} onClick={handleMenuItemClick(item.to)}>
+                    {item.title}
+                  </MenuItem>
+                ))
+              }
             >
-              {menuItems.map((item, index) => (
-                <MenuItem key={index} onClick={handleMenuItemClick(item.to)}>
-                  {item.title}
-                </MenuItem>
-              ))}
-            </Menu>
+              {(handleMenuOpen) => (
+                <IconButton
+                  size="large"
+                  aria-label="account of current user"
+                  aria-controls="menu-appbar"
+                  aria-haspopup="true"
+                  onClick={(e) => handleMenuOpen(e.currentTarget)}
+                  color="inherit"
+                >
+                  <MenuIcon />
+                </IconButton>
+              )}
+            </MenuTrigger>
           </Box>
           <Box columnGap={2} flex={1} sx={{ display: { xs: 'none', md: 'flex' } }}>
             {menuItems.map((item, index) => (

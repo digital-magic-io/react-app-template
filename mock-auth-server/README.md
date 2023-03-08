@@ -3,6 +3,7 @@
 This is a stub configuration for testing your Front-end's application.
 
 ### Install json-server
+
 ```shell
 npm install
 ```

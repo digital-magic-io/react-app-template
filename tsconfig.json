@@ -3,11 +3,7 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": false,
     "checkJs": false,
     "declaration": true,
@@ -32,7 +28,5 @@
     "jsx": "react-jsx",
     "strictNullChecks": true
   },
-  "include": [
-    "./src", "./test", "./jest.config.ts"
-  ]
+  "include": ["./src", "./test", "./jest.config.ts"]
 }

@@ -82,8 +82,8 @@
     "login": {
       "form": {
         "buttons": {
-          "submit": "Войти",
-										"register": "Зарегистрироваться"
+          "register": "Зарегистрироваться",
+          "submit": "Войти"
         },
         "fields": {
           "password": "Пароль",
@@ -92,26 +92,27 @@
       },
       "title": "Вход"
     },
+    "main": {
+      "text": "Текст для домашней страницы",
+      "title": "Домашняя"
+    },
     "signUp": {
       "form": {
         "buttons": {
           "submit": "Зарегистрироваться"
         },
-        "fields": {
-          "password": "Пароль",
-          "confirmPassword": "Подтвердить пароль",
-          "username": "Имя пользователя",
-          "displayName": "Отображаемое имя"
-        },
         "errors": {
+          "passwordsMismatch": "Пароли должны совпадать",
           "userExists": "Такой пользователь уже существует"
+        },
+        "fields": {
+          "confirmPassword": "Подтвердить пароль",
+          "displayName": "Отображаемое имя",
+          "password": "Пароль",
+          "username": "Имя пользователя"
         }
       },
       "title": "Регистрация"
-    },
-    "main": {
-      "text": "Текст для домашней страницы",
-      "title": "Домашняя"
     },
     "user": {
       "edit": {
