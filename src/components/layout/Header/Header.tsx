@@ -121,7 +121,7 @@ export const Header: React.FC = () => {
               </NavLink>
             ))}
           </Box>
-          <Box columnGap={2} flex={1} display="flex">
+          <Box columnGap={2} flexGrow={0} display="flex">
             {UserLanguage.options.map((lang, index) => (
               <Link
                 key={index}
@@ -133,13 +133,13 @@ export const Header: React.FC = () => {
               </Link>
             ))}
           </Box>
-          <Box sx={{ flexGrow: 0 }} columnGap={2}>
+          <Box flexGrow={0} columnGap={2}>
             <Button onClick={handleSwitchThemeClick} color="inherit">
               {currentTheme.type === 'light' ? <DarkMode /> : <LightMode />}
             </Button>
           </Box>
           {hasValue(displayName) && (
-            <Box sx={{ flexGrow: 0 }} display="flex" columnGap={2}>
+            <Box display="flex" flexGrow={0} columnGap={2}>
               <Typography>{displayName}</Typography>
               <Button color="inherit" onClick={handleLogoutClick}>
                 {t('global.buttons.logout')}
